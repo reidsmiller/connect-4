@@ -22,12 +22,12 @@ RSpec.describe Player do
       expect(@player1.convert("F")).to eq(5)
     end
 
-    xit 'can place a piece at appropriate place in column' do
+    it 'can place a piece at appropriate place in column' do
       @player1.place("B")
       @player1.place("D")
       @player1.place("B")
 
-      expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+      expect(@player1.board.board_array).to eq([[".", ".", ".", ".", ".", ".", "."],
         [".", ".", ".", ".", ".", ".", "."],
         [".", ".", ".", ".", ".", ".", "."],
         [".", ".", ".", ".", ".", ".", "."],

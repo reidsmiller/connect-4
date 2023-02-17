@@ -1,12 +1,24 @@
 class Player
-  attr_reader :name
+  attr_reader :name, :board
   
   def initialize(name)
     @name = name
+    @board = Board.new
   end
 
   def place(input)
     input.upcase!
+    column = convert(input)
+    row = 5
+    while row >= 0
+      if @board.board_array[row][column] == "."
+        @board.board_array[row][column] = "X"
+        break
+      else
+        row -= 1
+      end
+    end
+    @board.render
   end
 
   def convert(letter)
