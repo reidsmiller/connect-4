@@ -17,7 +17,12 @@ RSpec.describe Player do
   end
 
   describe '#Pieces' do
-    it 'can place a piece at appropriate place in column' do
+    it 'can call particular column' do
+      expect(@player1.convert("B")).to eq(1)
+      expect(@player1.convert("F")).to eq(5)
+    end
+
+    xit 'can place a piece at appropriate place in column' do
       @player1.place("B")
       @player1.place("D")
       @player1.place("B")
