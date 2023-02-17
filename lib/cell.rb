@@ -4,4 +4,12 @@ class Cell
     @location = @location
     @value = "."
   end
+
+  def player_select
+    @value = "X"
+  end
+
+  def comp_select
+    @value = "O"
+  end
 end

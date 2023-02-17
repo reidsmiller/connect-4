@@ -14,14 +14,14 @@ RSpec.describe Cell do
       expect(a1.value). to eq(".")
     end
 
-    xit 'can change value if selected by player' do
+    it 'can change value if selected by player' do
       a1 = Cell.new(:a1)
 
       a1.player_select
       expect(a1.value). to eq("X")
     end
 
-    xit 'can change value if selected by computer' do
+    it 'can change value if selected by computer' do
       a1 = Cell.new(:a1)
 
       a1.comp_select
