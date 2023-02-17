@@ -1,5 +1,5 @@
 class Cell
-  attr_reader :value
+  attr_reader :location, :value
   def initialize (location)
     @location = @location
     @value = "."
