@@ -15,16 +15,25 @@ RSpec.describe Board do
       expect(@board.board_array[1].length).to eq(7)
     end
 
-    xit 'can print the board' do
-      expect{@board.render}.to output(
-        " A B C D E F G
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . ."
-      ).to_stdout
+    it 'can print the board' do
+      expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."]])
+    end
+
+    it 'can change access and change each point on the grid' do
+      #change B4 to X
+      @board.board_array[3][1] = "X"
+
+      expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", "X", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "."]])
     end
   end
 end
