@@ -58,4 +58,14 @@ RSpec.describe Board do
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."]])
   end
+
+  it 'cannot place a token in column if the column is full' do
+    @board.place("B")
+    @board.place("B")
+    @board.place("B")
+    @board.place("B")
+    @board.place("B")
+
+    expect(@board.place("B")).to be false
+  end
 end
