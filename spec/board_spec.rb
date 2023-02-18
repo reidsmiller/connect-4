@@ -40,7 +40,7 @@ RSpec.describe Board do
   it 'can place a piece at appropriate place in column' do
     @board.place("B")
     @board.place("D")
-    @board.place("B")
+    expect(@board.place("B")).to be true
 
     expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
@@ -48,5 +48,14 @@ RSpec.describe Board do
       [".", ".", ".", ".", ".", ".", "."],
       [".", "X", ".", ".", ".", ".", "."],
       [".", "X", ".", "X", ".", ".", "."]])
+  end
+  it 'does not allow a piece to be placed at an invalid location' do
+    expect(@board.place("Z")).to be false
+    expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."]])
   end
 end
