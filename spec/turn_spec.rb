@@ -21,7 +21,7 @@ RSpec.describe Turn do
     end
 
     it 'can take a computer turn' do
-      
+      expect(("A".."G").member?(@turn.computer_turn)).to be true
     end
   end
 end
