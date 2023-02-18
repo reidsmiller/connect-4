@@ -29,14 +29,10 @@ class Board
           row -= 1
         end
       end
+    else
+      column = column.ord - 65
     end
-    # Need to convert column back to letter
-    puts "Column #{column} is not a valid choice! Please choose another column."
+    puts "Column #{(65 + column).chr} is not a valid choice! Please choose another column."
     false
   end
-
-  #Don't think we need this, it works as is
-  # def check_if_full(column)
-  #   column_check = []
-  # end
 end
