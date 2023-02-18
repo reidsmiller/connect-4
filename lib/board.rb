@@ -12,4 +12,22 @@ class Board
       puts
     end
   end
+
+  # Will probably need to refactor with some helpers since this is a little long (future us problem :) )
+  def place(input)
+    input.upcase!
+    if ("A".."G").member?(input)
+      column = input.ord - 65
+      row = 5
+      while row >= 0
+        if @board_array[row][column] == "."
+          @board_array[row][column] = "X"
+          return true
+        else
+          row -= 1
+        end
+      end
+    end
+    false
+  end
 end
