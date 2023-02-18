@@ -36,4 +36,19 @@ RSpec.describe Board do
         [".", ".", ".", ".", ".", ".", "."]])
     end
   end
+
+  it 'can place a piece at appropriate place in column' do
+    @player1.place("B")
+    @player1.place("D")
+    @player1.place("B")
+
+    expect(@player1.board.board_array).to eq([[".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", "X", ".", ".", ".", ".", "."],
+      [".", "X", ".", "X", ".", ".", "."]])
+  end
+
+  end
 end
