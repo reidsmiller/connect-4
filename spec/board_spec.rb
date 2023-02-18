@@ -36,4 +36,38 @@ RSpec.describe Board do
         [".", ".", ".", ".", ".", ".", "."]])
     end
   end
+
+  it 'can place a piece at appropriate place in column' do
+    @board.place("B", "X")
+    @board.place("D", "X")
+    expect(@board.place("B", "X")).to be true
+
+    expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", "X", ".", ".", ".", ".", "."],
+      [".", "X", ".", "X", ".", ".", "."]])
+  end
+  it 'does not allow a piece to be placed at an invalid location' do
+    expect(@board.place("Z", "X")).to be false
+    expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "."]])
+  end
+
+  #You had it right! You just needed one more @board.place("B") to get past the 6 places. Your method works as is.
+  it 'cannot place a token in column if the column is full' do
+    @board.place("B", "X")
+    @board.place("B", "X")
+    @board.place("B", "X")
+    @board.place("B", "X")
+    @board.place("B", "X")
+    @board.place("B", "X")
+
+    expect(@board.place("B", "X")).to be false
+  end
 end
