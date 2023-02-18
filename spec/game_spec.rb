@@ -52,7 +52,6 @@ RSpec.describe Game do
       expect(@game.game_win).to be nil
 
       @game.player_turn("D")
-
       expect(@game.game_win).to be true
     end
   end
