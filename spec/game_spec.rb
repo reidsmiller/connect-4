@@ -25,16 +25,35 @@ RSpec.describe Game do
     end
   end
 
-  describe '#win game'
-  it 'returns true when 4 pieces are in a row horizontally' do
-    @game.player_turn("A")
-    @game.player_turn("B")
-    @game.player_turn("C")
-    
-    expect(@game.game_win).to be nil
+  describe '#win game' do
+    it 'returns true when 4 pieces are in a row horizontally' do
+      @game.player_turn("A")
+      @game.player_turn("B")
+      @game.player_turn("C")
+      
+      expect(@game.game_win).to be nil
+  
+      @game.player_turn("D")
+      
+      expect(@game.game_win).to be true
+    end
 
-    @game.player_turn("D")
-    
-    expect(@game.game_win).to be true
+    it 'returns true when 4 player pieces are in a row diagonally up' do
+      @game.board.board_array[5][1] = "O"
+      @game.board.board_array[5][2] = "O"
+      @game.board.board_array[5][3] = "O"
+      @game.board.board_array[4][2] = "O"
+      @game.board.board_array[4][3] = "O"
+      @game.board.board_array[3][3] = "O"
+      @game.player_turn("A")
+      @game.player_turn("B")
+      @game.player_turn("C")
+      
+      expect(@game.game_win).to be nil
+
+      @game.player_turn("D")
+
+      expect(@game.game_win).to be true
+    end
   end
 end
