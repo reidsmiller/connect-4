@@ -9,34 +9,41 @@ class Game
 
   def player_turn(column)
     @board.place(column, "X")
-    self.win?
+    win?
   end
 
   def computer_turn
     comp_column = (65 + rand(7)).chr
     @board.place(comp_column, "O")
-    self.win?
+    win?
     comp_column
   end
 
   def win?
-    check_horizontal
-    check_diagonal_up
+
+    check_for_win(@board.board_array)
+    check_for_win(vertical_sort)
+    check_for_win(diagonal_up_sort)
+    
   end
 
-  def check_horizontal
-    @board.board_array.each do |row|
-      row.each_cons(4) do |location|
-        if location == ["X", "X", "X", "X"]
+  def check_for_win(array)
+    array.each do |row|
+      row.each_cons(4) do |group|
+        if group == ["X", "X", "X", "X"]
           @game_win = true
-        elsif location == ["O", "O", "O", "O"] 
+        elsif group == ["O", "O", "O", "O"] 
           @game_win = false
         end
       end
     end
   end
+  
+  def vertical_sort
+    @board.board_array.transpose
+  end
 
-  def check_diagonal_up
+  def diagonal_up_sort
     padding = 5
     padded_matrix = []
 
