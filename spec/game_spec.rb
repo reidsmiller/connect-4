@@ -31,10 +31,10 @@ RSpec.describe Game do
     @game.player_turn("B")
     @game.player_turn("C")
     
-    expect(@game.won?).to be false
+    expect(@game.win?).to be false
 
     @game.player_turn("D")
 
-    expect(@game.won?).to be true
+    expect(@game.win?).to be true
   end
 end
