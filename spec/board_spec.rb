@@ -38,17 +38,15 @@ RSpec.describe Board do
   end
 
   it 'can place a piece at appropriate place in column' do
-    @player1.place("B")
-    @player1.place("D")
-    @player1.place("B")
+    @board.place("B")
+    @board.place("D")
+    @board.place("B")
 
-    expect(@player1.board.board_array).to eq([[".", ".", ".", ".", ".", ".", "."],
+    expect(@board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", "X", ".", ".", ".", ".", "."],
       [".", "X", ".", "X", ".", ".", "."]])
-  end
-
   end
 end
