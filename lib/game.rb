@@ -20,11 +20,13 @@ class Game
   end
 
   def win?
-    check_horizontal
+    check_for_win(@board.board_array)
+    check_for_win(vertical_sort)
+    
   end
 
-  def check_horizontal
-    @board.board_array.each do |row|
+  def check_for_win(array)
+    array.each do |row|
       row.each_cons(4) do |group|
         if group == ["X", "X", "X", "X"]
           @game_win = true
@@ -35,7 +37,7 @@ class Game
     end
   end
 
-  def check_virtical
-
+  def vertical_sort
+    @board.board_array.transpose
   end
 end
