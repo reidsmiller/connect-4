@@ -15,4 +15,16 @@ class Game
     @board.place(comp_column, "O")
     comp_column
   end
+
+  def win?
+    check_horizontal
+  end
+
+  def check_horizontal
+    @board.board_array.each do |row|
+      row[0..4].each_cons(4)
+      require 'pry'; binding.pry
+    end
+    
+  end
 end
