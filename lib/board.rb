@@ -14,10 +14,12 @@ class Board
   end
 
   # Will probably need to refactor with some helpers since this is a little long (future us problem :) )
-  def place(input)
-    input.upcase!
-    if ("A".."G").member?(input)
-      column = input.ord - 65
+  # Future thought, what if we set a second parameter for either player or computer, then we can choose between
+  # an "X" or an "O" to place in the location.
+  def place(column)
+    column.upcase!
+    if ("A".."G").member?(column)
+      column = column.ord - 65
       row = 5
       while row >= 0
         if @board_array[row][column] == "."
@@ -29,5 +31,10 @@ class Board
       end
     end
     false
+  end
+
+  #still thinking this one out
+  def check_if_full(column)
+    column_check = []
   end
 end
