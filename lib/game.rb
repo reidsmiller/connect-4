@@ -20,8 +20,10 @@ class Game
   end
 
   def win?
+
     check_for_win(@board.board_array)
     check_for_win(vertical_sort)
+    check_for_win(diagonal_up_sort)
     
   end
 
@@ -36,8 +38,21 @@ class Game
       end
     end
   end
-
+  
   def vertical_sort
     @board.board_array.transpose
+  end
+
+  def diagonal_up_sort
+    padding = 5
+    padded_matrix = []
+
+    @board.board_array.each do |row|
+        inverse_padding = 5 - padding
+        padded_matrix << ([nil] * inverse_padding) + row + ([nil] * padding)
+        padding -= 1    
+    end
+    
+    padded_matrix.transpose.map {|array| array.compact}
   end
 end
