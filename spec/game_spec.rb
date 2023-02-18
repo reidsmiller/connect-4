@@ -20,7 +20,7 @@ RSpec.describe Game do
         [".", "X", ".", ".", ".", ".", "."]])
     end
 
-    it 'can take a computer turn' do
+    it 'can take a computer turn with a randomly generated letter A-G' do
       expect(("A".."G").member?(@game.computer_turn)).to be true
     end
   end
@@ -38,6 +38,20 @@ RSpec.describe Game do
     expect(@game.game_win).to be true
   end
 
+  it 'returns true when 4 pieces are in a row horizontally in a different orientation' do
+    @game.player_turn("A")
+    @game.board.place("A", "O")
+    @game.player_turn("B")
+    @game.board.place("B", "O")
+    @game.player_turn("C")
+    @game.board.place("C", "O")
+    @game.board.place("D", "O")
+    @game.board.place("D", "O")
+    @game.win?
+    expect(@game.game_win).to be false
+
+  end
+
   it 'returns false if the computer has 4 pieces in a row horizontally' do
     #forcing "O"'s since our computer is not that smart yet
 
@@ -53,7 +67,7 @@ RSpec.describe Game do
     expect(@game.game_win).to be false
   end
 
-  it 'returns true when 4 pieces are in a row virtically' do
+  it 'returns true when 4 pieces are in a row vertically' do
     @game.player_turn("B")
     @game.player_turn("B")
     @game.player_turn("B")
@@ -65,7 +79,7 @@ RSpec.describe Game do
     expect(@game.game_win).to be true
   end
 
-  it 'returns false when 4 computer pieces are in a row virtically' do
+  it 'returns false when 4 computer pieces are in a row vertically' do
     #forcing "O"'s since our computer is not that smart yet
     @game.board.place("C", "O")
     @game.board.place("C", "O")
