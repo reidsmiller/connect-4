@@ -59,8 +59,9 @@ RSpec.describe Board do
       [".", ".", ".", ".", ".", ".", "."]])
   end
 
-  #This test is still needs to pass (see check_if_full method)
+  #You had it right! You just needed one more @board.place("B") to get past the 6 places. Your method works as is.
   it 'cannot place a token in column if the column is full' do
+    @board.place("B")
     @board.place("B")
     @board.place("B")
     @board.place("B")

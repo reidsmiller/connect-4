@@ -30,11 +30,13 @@ class Board
         end
       end
     end
+    # Need to convert column back to letter
+    puts "Column #{column} is not a valid choice! Please choose another column."
     false
   end
 
-  #still thinking this one out
-  def check_if_full(column)
-    column_check = []
-  end
+  #Don't think we need this, it works as is
+  # def check_if_full(column)
+  #   column_check = []
+  # end
 end
