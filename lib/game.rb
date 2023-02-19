@@ -10,13 +10,14 @@ class Game
 
   def player_turn(column)
     @board.place(column, "X")
-    
+    @player_turns << column
     win?
   end
 
   def computer_turn
     comp_column = (65 + rand(7)).chr
     @board.place(comp_column, "O")
+    @comp_turns << comp_column
     win?
     comp_column
   end
@@ -74,7 +75,7 @@ class Game
   def turn_round
     until @game_win != nil
       puts `clear`
-      puts 'You chose #{} and the computer chose #{}'
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
       puts board.render
       self.player_turn(gets.chomp)
       self.computer_turn
