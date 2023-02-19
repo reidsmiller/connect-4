@@ -128,5 +128,58 @@ RSpec.describe Game do
       @game.board.render
       expect(@game.game_win).to be true
     end
+
+    it 'is a draw when no available spots are left and no winner is found' do
+      @game.player_turn("A")
+      @game.player_turn("B")
+      @game.player_turn("D")
+      @game.player_turn("G")
+      @game.board.board_array[5][2] = "O"
+      @game.board.board_array[5][4] = "O"
+      @game.board.board_array[5][5] = "O"
+      @game.board.board_array[4][0] = "O"
+      @game.board.board_array[4][1] = "O"
+      @game.board.board_array[4][2] = "O"
+      @game.board.board_array[4][5] = "O"
+      @game.player_turn("D")
+      @game.player_turn("E")
+      @game.player_turn("G")
+      @game.player_turn("B")
+      @game.player_turn("D")
+      @game.player_turn("E")
+      @game.board.board_array[3][0] = "O"
+      @game.board.board_array[3][2] = "O"
+      @game.board.board_array[3][5] = "O"
+      @game.board.board_array[3][6] = "O"
+      @game.player_turn("A")
+      @game.player_turn("B")
+      @game.player_turn("C")
+      @game.player_turn("F")
+      @game.player_turn("G")
+      @game.board.board_array[2][3] = "O"
+      @game.board.board_array[2][4] = "O"
+      @game.player_turn("A")
+      @game.player_turn("D")
+      @game.player_turn("E")
+      @game.board.board_array[1][1] = "O"
+      @game.board.board_array[1][2] = "O"
+      @game.board.board_array[1][5] = "O"
+      @game.board.board_array[1][6] = "O"
+      @game.board.board_array[0][0] = "O"
+      @game.board.board_array[0][2] = "O"
+      @game.board.board_array[0][4] = "O"
+      @game.board.board_array[0][5] = "O"
+      @game.player_turn("B")
+      @game.player_turn("D")
+      
+      expect(@game.game_win).to be nil
+      expect(@game.game_draw).to be nil
+
+      @game.player_turn("G")
+
+      expect(@game.game_win).to be nil
+      expect(@game.game_draw).to be true
+
+    end
   end
 end
