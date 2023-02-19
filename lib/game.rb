@@ -80,15 +80,34 @@ class Game
   end
 
   def game_menu
-    puts 'Welcome to Connect 4!! \n 
-      Enter p to Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
+    puts`clear`
+    puts '
+==============================================================
+_________                                     __       _____  
+\_   ___ \  ____   ____   ____   ____   _____/  |_    /  |  | 
+/    \  \/ /  _ \ /    \ /    \_/ __ \_/ ___\   __\  /   |  |_
+\     \___(  <_> )   |  \   |  \  ___/\  \___|  |   /    ^   /
+ \______  /\____/|___|  /___|  /\___  >\___  >__|   \____   | 
+        \/            \/     \/     \/     \/            |__| 
+=============================================================='
+    puts
+    puts 'Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
     ans = gets.chomp
     if ans == "p"
-      @board = Board.new
+      @board.reset
+      @game_win = nil
+      @game_draw = false
       turn_round
     elsif ans == "q"
       puts `clear`
-      puts 'GAME OVER'
+      puts '
+       ________    _____      _____  ___________ ____________   _________________________ 
+      /  _____/   /  _  \    /     \ \_   _____/ \_____  \   \ /   /\_   _____/\______   \
+     /   \  ___  /  /_\  \  /  \ /  \ |    __)_   /   |   \   Y   /  |    __)_  |       _/
+     \    \_\  \/    |    \/    Y    \|        \ /    |    \     /   |        \ |    |   \
+      \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
+             \/         \/         \/        \/          \/                 \/         \/ '
+      puts "\n\n"
     else
       puts `clear`
       puts "#{ans} isn't a valid answer fool!!"
@@ -99,12 +118,13 @@ class Game
   def turn_round
     until @game_win != nil || game_draw == true
       puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n\n==============="
       @board.render
-      puts "What column do you choose, intrepid player?"
+      puts "===============\n\nWhat column do you choose, intrepid player?"
       player_turn(gets.chomp)
       computer_turn
     end
+    game_end
   end
 
   def game_end
@@ -115,13 +135,14 @@ class Game
     elsif @game_win == false
       puts `clear`
       @comp_wins += 1
-      puts "YOU LOST! YOU SUCK!  You're literally not smart enough to beat a computer choosing random columns."
+      puts "YOU LOST! You're not smart enough to beat a computer choosing random columns? Sad day."
     elsif @game_draw == true
       puts `clear`
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
-    puts "You've won #{@player_wins} times, the computer has won #{@comp_wins} times, and you've had #{@draws} draw matches."
+    puts "================================\n\nYou've won #{@player_wins} times\n\nThe computer has won #{@comp_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress any key to continue"
+    gets.chomp
     game_menu
   end
 end
