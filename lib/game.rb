@@ -1,5 +1,5 @@
 class Game
-  attr_reader :board, :game_win, :game_draw :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
+  attr_reader :board, :game_win, :game_draw, :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
   
   def initialize
     @board = Board.new
@@ -97,7 +97,7 @@ class Game
   end
 
   def turn_round
-    until @game_win != nil
+    until @game_win != nil || game_draw == true
       puts `clear`
       puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
       @board.render
@@ -112,9 +112,13 @@ class Game
     elsif @game_win == false
       puts `clear`
       @comp_wins += 1
-      puts 'YOU LOST! YOU SUCK!'
+      puts "YOU LOST! YOU SUCK!  You're literally not smart enough to beat a computer choosing random columns."
+    elsif @game_draw == true
+      puts `clear`
+      @draws += 1
+      puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
-    puts "You've won #{@player_wins} times and the computer has won #{@comp_wins} times."
-
+    puts "You've won #{@player_wins} times, the computer has won #{@comp_wins} times, and you've had #{@draws} draw matches."
+    game_menu
   end
 end
