@@ -80,6 +80,7 @@ class Game
   end
 
   def game_menu
+    puts`clear`
     puts '
 ==============================================================
 _________                                     __       _____  
@@ -106,6 +107,7 @@ _________                                     __       _____
      \    \_\  \/    |    \/    Y    \|        \ /    |    \     /   |        \ |    |   \
       \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
              \/         \/         \/        \/          \/                 \/         \/ '
+      puts "\n\n"
     else
       puts `clear`
       puts "#{ans} isn't a valid answer fool!!"
@@ -116,9 +118,9 @@ _________                                     __       _____
   def turn_round
     until @game_win != nil || game_draw == true
       puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n==============="
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n\n==============="
       @board.render
-      puts "===============\nWhat column do you choose, intrepid player?"
+      puts "===============\n\nWhat column do you choose, intrepid player?"
       player_turn(gets.chomp)
       computer_turn
     end
@@ -139,7 +141,8 @@ _________                                     __       _____
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
-    puts "You've won #{@player_wins} times, the computer has won #{@comp_wins} times, and you've had #{@draws} draw matches."
+    puts "================================\n\nYou've won #{@player_wins} times\n\nThe computer has won #{@comp_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress any key to continue"
+    gets.chomp
     game_menu
   end
 end
