@@ -115,7 +115,7 @@ class Game
     elsif @game_win == false
       puts `clear`
       @comp_wins += 1
-      puts "YOU LOST! YOU SUCK!  You're literally not smart enough to beat a computer choosing random columns."
+      puts "YOU LOST! You're not smart enough to beat a computer choosing random columns? Sad day."
     elsif @game_draw == true
       puts `clear`
       @draws += 1
