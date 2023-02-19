@@ -13,9 +13,6 @@ class Board
     end
   end
 
-  # Will probably need to refactor with some helpers since this is a little long (future us problem :) )
-  # Future thought, what if we set a second parameter for either player or computer, then we can choose between
-  # an "X" or an "O" to place in the location.
   def place(column, mark)
     column.upcase!
     if ("A".."G").member?(column)
@@ -34,5 +31,9 @@ class Board
     end
     puts "Column #{(65 + column).chr} is not a valid choice! Please choose another column."
     false
+  end
+
+  def reset
+    @board_array = Array.new(6) { Array.new(7, ".")}
   end
 end

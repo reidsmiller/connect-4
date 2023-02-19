@@ -81,10 +81,12 @@ class Game
 
   def game_menu
     puts 'Welcome to Connect 4!!'
-    puts 'Enter p to Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
+    puts 'Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
     ans = gets.chomp
     if ans == "p"
-      @board = Board.new
+      @board.reset
+      @game_win = nil
+      @game_draw = false
       turn_round
     elsif ans == "q"
       puts `clear`
@@ -105,6 +107,7 @@ class Game
       player_turn(gets.chomp)
       computer_turn
     end
+    game_end
   end
 
   def game_end
