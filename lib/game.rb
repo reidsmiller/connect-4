@@ -1,11 +1,15 @@
 class Game
 
-  attr_reader :board, :game_win, :player_turns, :comp_turns
+  attr_reader :board, :game_win, :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
+  
   def initialize
     @board = Board.new
     @player_turns = []
     @comp_turns = []
     @game_win = nil
+    @player_wins = 0
+    @comp_wins = 0
+    @draws = 0
   end
 
   def player_turn(column)
@@ -72,13 +76,42 @@ class Game
     padded_matrix.transpose.map {|array| array.compact}
   end
 
+  def game_menu
+    puts 'Welcome to Connect 4!! \n 
+      Enter p to Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
+    ans = gets.chomp
+    if ans == "p"
+      @board = Board.new
+      turn_round
+    elsif ans == "q"
+      puts `clear`
+      puts 'GAME OVER'
+    else
+      puts `clear`
+      puts "#{ans} isn't a valid answer fool!!"
+      game_menu
+    end
+  end
+
   def turn_round
     until @game_win != nil
       puts `clear`
       puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
-      puts board.render
-      self.player_turn(gets.chomp)
-      self.computer_turn
+      @board.render
+      puts "What column do you choose, intrepid player?"
+      player_turn(gets.chomp)
+      computer_turn
     end
+    if @game_win == true
+      puts `clear`
+      @player_wins += 1
+      puts 'YOU WON! HOW COOL!'
+    elsif @game_win == false
+      puts `clear`
+      @comp_wins += 1
+      puts 'YOU LOST! YOU SUCK!'
+    end
+    puts "You've won #{@player_wins} times and the computer has won #{@comp_wins} times."
+
   end
 end

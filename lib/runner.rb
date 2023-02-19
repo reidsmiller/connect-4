@@ -1,8 +1,7 @@
-require_relative 'board'
+require_relative 'spec_helper'
 
-board = Board.new
+game = Game.new
 
-puts 'Welcome to Connect 4!!/n
-Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
+puts 'Welcome to Connect 4!!'
 
-board.render
+game.game_menu
