@@ -80,8 +80,8 @@ class Game
   end
 
   def game_menu
-    puts 'Welcome to Connect 4!! \n 
-      Enter p to Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
+    puts 'Welcome to Connect 4!!'
+    puts 'Enter p to Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
     ans = gets.chomp
     if ans == "p"
       @board = Board.new
