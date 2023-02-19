@@ -80,7 +80,16 @@ class Game
   end
 
   def game_menu
-    puts 'Welcome to Connect 4!!'
+    puts '
+==============================================================
+_________                                     __       _____  
+\_   ___ \  ____   ____   ____   ____   _____/  |_    /  |  | 
+/    \  \/ /  _ \ /    \ /    \_/ __ \_/ ___\   __\  /   |  |_
+\     \___(  <_> )   |  \   |  \  ___/\  \___|  |   /    ^   /
+ \______  /\____/|___|  /___|  /\___  >\___  >__|   \____   | 
+        \/            \/     \/     \/     \/            |__| 
+=============================================================='
+    puts
     puts 'Enter p to play the highest stakes game of your life. Enter q to wimp out and quit.'
     ans = gets.chomp
     if ans == "p"
@@ -90,7 +99,13 @@ class Game
       turn_round
     elsif ans == "q"
       puts `clear`
-      puts 'GAME OVER'
+      puts '
+       ________    _____      _____  ___________ ____________   _________________________ 
+      /  _____/   /  _  \    /     \ \_   _____/ \_____  \   \ /   /\_   _____/\______   \
+     /   \  ___  /  /_\  \  /  \ /  \ |    __)_   /   |   \   Y   /  |    __)_  |       _/
+     \    \_\  \/    |    \/    Y    \|        \ /    |    \     /   |        \ |    |   \
+      \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
+             \/         \/         \/        \/          \/                 \/         \/ '
     else
       puts `clear`
       puts "#{ans} isn't a valid answer fool!!"
@@ -101,9 +116,9 @@ class Game
   def turn_round
     until @game_win != nil || game_draw == true
       puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n==============="
       @board.render
-      puts "What column do you choose, intrepid player?"
+      puts "===============\nWhat column do you choose, intrepid player?"
       player_turn(gets.chomp)
       computer_turn
     end
