@@ -171,9 +171,9 @@ RSpec.describe Game do
       @game.board.board_array[0][5] = "O"
       @game.player_turn("B")
       @game.player_turn("D")
-      
+
       expect(@game.game_win).to be nil
-      expect(@game.game_draw).to be nil
+      expect(@game.game_draw).to be false
 
       @game.player_turn("G")
 
