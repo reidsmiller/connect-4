@@ -1,14 +1,16 @@
 class Game
 
-  attr_reader :board, :game_win
+  attr_reader :board, :game_win, :player_turns, :comp_turns
   def initialize
     @board = Board.new
-    @turns = []
+    @player_turns = []
+    @comp_turns = []
     @game_win = nil
   end
 
   def player_turn(column)
     @board.place(column, "X")
+    
     win?
   end
 
@@ -67,5 +69,15 @@ class Game
         padding -= 1    
     end
     padded_matrix.transpose.map {|array| array.compact}
+  end
+
+  def turn_round
+    until @game_win != nil
+      puts `clear`
+      puts 'You chose #{} and the computer chose #{}'
+      puts board.render
+      self.player_turn(gets.chomp)
+      self.computer_turn
+    end
   end
 end
