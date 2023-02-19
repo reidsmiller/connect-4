@@ -1,12 +1,12 @@
 class Game
-
-  attr_reader :board, :game_win, :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
+  attr_reader :board, :game_win, :game_draw :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
   
   def initialize
     @board = Board.new
     @player_turns = []
     @comp_turns = []
     @game_win = nil
+    @game_draw = false
     @player_wins = 0
     @comp_wins = 0
     @draws = 0
@@ -27,12 +27,11 @@ class Game
   end
 
   def win?
-
     check_for_win(@board.board_array)
     check_for_win(vertical_sort)
     check_for_win(diagonal_up_sort)
     check_for_win(diagonal_down_sort)
-    
+    check_for_draw
   end
 
   def check_for_win(array)
@@ -45,6 +44,10 @@ class Game
         end
       end
     end
+  end
+
+  def check_for_draw
+    @game_draw = true if !@board.board_array.flatten.any?(/[.]/)
   end
   
   def vertical_sort
