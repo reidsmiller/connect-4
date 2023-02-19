@@ -105,6 +105,9 @@ class Game
       player_turn(gets.chomp)
       computer_turn
     end
+  end
+
+  def game_end
     if @game_win == true
       puts `clear`
       @player_wins += 1
