@@ -12,19 +12,29 @@ class Game
     @draws = 0
   end
 
-  def player_turn(column)
-    @board.place(column, "X")
-    @player_turns << column
-    win?
+
+  def player_turn
+    column = gets.chomp
+      if @board.place(column, 'X')
+        @player_turns << column
+        win?
+      else
+        puts 'That is not a valid selection, please select a new column'
+        player_turn
+      end
   end
 
   def computer_turn
     comp_column = (65 + rand(7)).chr
-    @board.place(comp_column, "O")
+    if @board.place(comp_column, 'O')
     @comp_turns << comp_column
     win?
     comp_column
+    else 
+      computer_turn
+    end
   end
+
 
   def win?
     check_for_win(@board.board_array)
@@ -79,6 +89,10 @@ class Game
     padded_matrix.transpose.map {|array| array.compact}
   end
 
+
+
+
+  # I think this should be in a new class called game_runner and the code above should be in a class called game logic or something?
   def game_menu
     puts`clear`
     puts '
@@ -121,7 +135,7 @@ _________                                     __       _____
       puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n\n==============="
       @board.render
       puts "===============\n\nWhat column do you choose, intrepid player?"
-      player_turn(gets.chomp)
+      player_turn
       computer_turn
     end
     game_end
