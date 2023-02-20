@@ -101,7 +101,7 @@ class Game
   def turn_round
     until @game_win != nil || game_draw == true
       puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}" if @player_turns != []
       @board.render
       puts "===============\n\nWhat column do you choose, intrepid player?\nYour mark will be X and your computer nemisis will be O."
       player_turn(gets.chomp)
