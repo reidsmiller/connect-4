@@ -26,10 +26,7 @@ class Board
           row -= 1
         end
       end
-    else
-      column = column.ord - 65
     end
-    puts "Column #{(65 + column).chr} is not a valid choice! Please choose another column."
     false
   end
 
