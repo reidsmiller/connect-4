@@ -3,16 +3,16 @@ class Game
   
   def initialize
     @board = Board.new
-    @player_turns = []
-    @comp_turns = []
+    @player_turns = [] #Should go in a new class GamePlay??
+    @comp_turns = [] #Should go in a new class GamePlay??
     @game_win = nil
     @game_draw = false
-    @player_wins = 0
-    @comp_wins = 0
-    @draws = 0
+    @player_wins = 0 #Should go in a new class GamePlay??
+    @comp_wins = 0 #Should go in a new class GamePlay??
+    @draws = 0 #Should go in a new class GamePlay??
   end
 
-
+#Should go in a new class GamePlay??
   def player_turn
     column = gets.chomp
       if @board.place(column, 'X')
@@ -23,7 +23,7 @@ class Game
         player_turn
       end
   end
-
+#Should go in a new class GamePlay??
   def computer_turn
     comp_column = (65 + rand(7)).chr
     if @board.place(comp_column, 'O')
@@ -92,7 +92,7 @@ class Game
 
 
 
-  # I think this should be in a new class called game_runner and the code above should be in a class called game logic or something?
+  #Should go in a new class GamePlay??
   def game_menu
     puts`clear`
     puts '
