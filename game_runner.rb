@@ -1,7 +1,8 @@
 require './lib/board'
 require './lib/game'
+require './lib/game_play'
 
-game = Game.new
+play_game = GamePlay.new
 
 
-game.game_menu
+play_game.game_menu
