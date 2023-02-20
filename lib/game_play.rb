@@ -71,7 +71,7 @@ _________                                     __       _____
   def turn_round
     until @game.game_win != nil || @game.game_draw == true
       puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n\n==============="
+      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}\n\n===============" if @player_turns != []
       @game.board.render
       puts "===============\n\nWhat column do you choose, intrepid player?"
       player_turn
@@ -94,7 +94,7 @@ _________                                     __       _____
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
-    puts "================================\n\nYou've won #{@player_wins} times\n\nThe computer has won #{@comp_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress any key to continue"
+    puts "================================\n\nYou've won #{@player_wins} times\n\nThe computer has won #{@comp_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress any ENTER to continue"
     gets.chomp
     game_menu
   end
