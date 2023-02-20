@@ -103,7 +103,7 @@ class Game
       puts `clear`
       puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}"
       @board.render
-      puts "What column do you choose, intrepid player?"
+      puts "===============\n\nWhat column do you choose, intrepid player?\nYour mark will be X and your computer nemisis will be O."
       player_turn(gets.chomp)
       computer_turn
     end
@@ -124,7 +124,8 @@ class Game
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
-    puts "You've won #{@player_wins} times, the computer has won #{@comp_wins} times, and you've had #{@draws} draw matches."
+    puts "================================\n\nYou've won #{@player_wins} times\n\nThe computer has won #{@comp_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress Enter to continue"
+    gets.chomp
     game_menu
   end
 end
