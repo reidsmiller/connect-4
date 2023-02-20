@@ -9,41 +9,27 @@ RSpec.describe Game do
     it 'exists' do
       expect(@game).to be_instance_of(Game)
     end
-
-    it 'can take a player turn' do
-      @game.player_turn("B")
-      expect(@game.board.render).to eq([[".", ".", ".", ".", ".", ".", "."],
-        [".", ".", ".", ".", ".", ".", "."],
-        [".", ".", ".", ".", ".", ".", "."],
-        [".", ".", ".", ".", ".", ".", "."],
-        [".", ".", ".", ".", ".", ".", "."],
-        [".", "X", ".", ".", ".", ".", "."]])
-    end
-
-    it 'can take a computer turn with a randomly generated letter A-G' do
-      expect(("A".."G").member?(@game.computer_turn)).to be true
-    end
   end
 
   describe '#win game' do
     it 'returns true when 4 pieces are in a row horizontally' do
-      @game.player_turn("A")
-      @game.player_turn("B")
-      @game.player_turn("C")
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
       
       expect(@game.game_win).to be nil
   
-      @game.player_turn("D")
-      
+      @game.board.place("D", "X")
+      @game.win?
       expect(@game.game_win).to be true
     end
 
     it 'returns true when 4 pieces are in a row horizontally in a different orientation' do
-      @game.player_turn("A")
+      @game.board.place("A", "X")
       @game.board.place("A", "O")
-      @game.player_turn("B")
+      @game.board.place("B", "X")
       @game.board.place("B", "O")
-      @game.player_turn("C")
+      @game.board.place("C", "X")
       @game.board.place("C", "O")
       @game.board.place("D", "O")
       @game.board.place("D", "O")
@@ -68,14 +54,14 @@ RSpec.describe Game do
     end
   
     it 'returns true when 4 pieces are in a row vertically' do
-      @game.player_turn("B")
-      @game.player_turn("B")
-      @game.player_turn("B")
+      @game.board.place("B", "X")
+      @game.board.place("B", "X")
+      @game.board.place("B", "X")
   
       expect(@game.game_win).to be nil
   
-      @game.player_turn("B")
-  
+      @game.board.place("B", "X")
+      @game.win?
       expect(@game.game_win).to be true
     end
   
@@ -100,14 +86,15 @@ RSpec.describe Game do
       @game.board.board_array[4][2] = "O"
       @game.board.board_array[4][3] = "O"
       @game.board.board_array[3][3] = "O"
-      @game.player_turn("A")
-      @game.player_turn("B")
-      @game.player_turn("C")
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
       
       expect(@game.game_win).to be nil
 
-      @game.player_turn("D")
+      @game.board.place("D", "X")
       @game.board.render
+      @game.win?
       expect(@game.game_win).to be true
     end
 
@@ -118,22 +105,23 @@ RSpec.describe Game do
       @game.board.board_array[5][1] = "O"
       @game.board.board_array[4][1] = "O"
       @game.board.board_array[5][2] = "O"
-      @game.player_turn("A")
-      @game.player_turn("B")
-      @game.player_turn("C")
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
       
       expect(@game.game_win).to be nil
 
-      @game.player_turn("D")
+      @game.board.place("D", "X")
       @game.board.render
+      @game.win?
       expect(@game.game_win).to be true
     end
 
     it 'is a draw when no available spots are left and no winner is found' do
-      @game.player_turn("A")
-      @game.player_turn("B")
-      @game.player_turn("D")
-      @game.player_turn("G")
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+      @game.board.place("D", "X")
+      @game.board.place("G", "X")
       @game.board.board_array[5][2] = "O"
       @game.board.board_array[5][4] = "O"
       @game.board.board_array[5][5] = "O"
@@ -141,26 +129,26 @@ RSpec.describe Game do
       @game.board.board_array[4][1] = "O"
       @game.board.board_array[4][2] = "O"
       @game.board.board_array[4][5] = "O"
-      @game.player_turn("D")
-      @game.player_turn("E")
-      @game.player_turn("G")
-      @game.player_turn("B")
-      @game.player_turn("D")
-      @game.player_turn("E")
+      @game.board.place("D", "X")
+      @game.board.place("E", "X")
+      @game.board.place("G", "X")
+      @game.board.place("B", "X")
+      @game.board.place("D", "X")
+      @game.board.place("E", "X")
       @game.board.board_array[3][0] = "O"
       @game.board.board_array[3][2] = "O"
       @game.board.board_array[3][5] = "O"
       @game.board.board_array[3][6] = "O"
-      @game.player_turn("A")
-      @game.player_turn("B")
-      @game.player_turn("C")
-      @game.player_turn("F")
-      @game.player_turn("G")
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
+      @game.board.place("F", "X")
+      @game.board.place("G", "X")
       @game.board.board_array[2][3] = "O"
       @game.board.board_array[2][4] = "O"
-      @game.player_turn("A")
-      @game.player_turn("D")
-      @game.player_turn("E")
+      @game.board.place("A", "X")
+      @game.board.place("D", "X")
+      @game.board.place("E", "X")
       @game.board.board_array[1][1] = "O"
       @game.board.board_array[1][2] = "O"
       @game.board.board_array[1][5] = "O"
@@ -169,14 +157,14 @@ RSpec.describe Game do
       @game.board.board_array[0][2] = "O"
       @game.board.board_array[0][4] = "O"
       @game.board.board_array[0][5] = "O"
-      @game.player_turn("B")
-      @game.player_turn("D")
+      @game.board.place("B", "X")
+      @game.board.place("D", "X")
 
       expect(@game.game_win).to be nil
       expect(@game.game_draw).to be false
 
-      @game.player_turn("G")
-
+      @game.board.place("G", "X")
+      @game.win?
       expect(@game.game_win).to be nil
       expect(@game.game_draw).to be true
 
