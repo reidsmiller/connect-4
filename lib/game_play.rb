@@ -3,14 +3,13 @@ class GamePlay
 attr_reader :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
   def initialize
     @game = Game.new
-    @player_turns = [] #Should go in a new class GamePlay??
-    @comp_turns = [] #Should go in a new class GamePlay??
-    @player_wins = 0 #Should go in a new class GamePlay??
-    @comp_wins = 0 #Should go in a new class GamePlay??
-    @draws = 0 #Should go in a new class GamePlay??
+    @player_turns = [] 
+    @comp_turns = [] 
+    @player_wins = 0 
+    @comp_wins = 0 
+    @draws = 0 
   end
 
-  #Should go in a new class GamePlay??
   def player_turn
     column = gets.chomp
       if @game.board.place(column, 'X')
@@ -22,7 +21,6 @@ attr_reader :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
       end
   end
 
-  #Should go in a new class GamePlay??
   def computer_turn
     comp_column = (65 + rand(7)).chr
     if @game.board.place(comp_column, 'O')
@@ -34,8 +32,6 @@ attr_reader :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
     end
   end
 
-
-  #Should go in a new class GamePlay??
   def game_menu
     puts`clear`
     puts '
