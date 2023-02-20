@@ -1,4 +1,5 @@
-require_relative './spec/spec_helper'
+require './lib/board'
+require './lib/game'
 
 game = Game.new
 
