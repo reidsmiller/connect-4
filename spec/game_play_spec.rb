@@ -9,5 +9,9 @@ RSpec.describe GamePlay do
     it 'exists' do
       expect(@game_play).to be_instance_of(GamePlay)
     end
+
+    it 'can have the computer make a valid column selection' do
+      expect(("A".."G").member?(@game_play.computer_turn)).to be true
+    end
   end
 end
