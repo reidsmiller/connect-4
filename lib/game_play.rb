@@ -1,5 +1,7 @@
+require_relative 'playable'
 
 class GamePlay
+include Playable
 
   def initialize
     @player1_name = nil
@@ -36,7 +38,6 @@ class GamePlay
       end
   end
   
-  # can right a test for this. 
   def computer_turn
     comp_column = (65 + rand(7)).chr
     if @game.board.place(comp_column, 'O')
@@ -50,15 +51,7 @@ class GamePlay
 
   def game_menu
     puts`clear`
-    puts '
-==============================================================
-_________                                     __       _____  
-\_   ___ \  ____   ____   ____   ____   _____/  |_    /  |  | 
-/    \  \/ /  _ \ /    \ /    \_/ __ \_/ ___\   __\  /   |  |_
-\     \___(  <_> )   |  \   |  \  ___/\  \___|  |   /    ^   /
- \______  /\____/|___|  /___|  /\___  >\___  >__|   \____   | 
-        \/            \/     \/     \/     \/            |__| 
-=============================================================='
+    puts logo
     puts
     puts 'Enter p to play the highest stakes game of your life with a computer. Enter 2 to play with two players. Enter q to wimp out and quit.'
     ans = gets.chomp
