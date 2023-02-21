@@ -1,6 +1,6 @@
 
 class GamePlay
-attr_reader :player_turns, :comp_turns, :player_wins, :comp_wins, :draws
+
   def initialize
     @player1_name = nil
     @player2_name = nil
