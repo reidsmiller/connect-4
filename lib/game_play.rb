@@ -55,21 +55,7 @@ include Playable
     puts
     puts 'Enter p to play the highest stakes game of your life with a computer. Enter 2 to play with two players. Enter q to wimp out and quit.'
     ans = gets.chomp
-    if ans == "p"
-      reset_turns
-      turn_round
-    elsif ans == '2'
-      reset_turns
-      turn_round_two_players
-    elsif ans == "q"
-      clear_terminal
-      puts game_over_logo
-      puts "\n\n"
-    else
-      clear_terminal
-      puts "#{ans} isn't a valid answer fool!!"
-      game_menu
-    end
+    decide_the_path(ans)
   end
 
   def turn_round_two_players
@@ -80,14 +66,12 @@ include Playable
     end
     loop do
       show_last_moves(@player1_name, @player2_name, @player_turns, @player2_turns)
-      line_render
-      @game.board.render
+      render_board_with_lines
       column_choice(@player1_name)
       player1_turn
       break if game_over?
       clear_terminal
-      line_render
-      @game.board.render
+      render_board_with_lines
       column_choice(@player2_name)
       player2_turn
       break if game_over?
@@ -100,8 +84,7 @@ include Playable
     loop do
       clear_terminal
       show_last_moves('You', 'computer', @player_turns, @comp_turns)
-      line_render
-      @game.board.render
+      render_board_with_lines
       column_choice("intrepid player")
       player1_turn
       break if game_over?
@@ -144,7 +127,7 @@ include Playable
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG."
     end
-    puts "================================\n\n#{@player1_name} won #{@player_wins} times\n\n#{@player2_name} won #{@player2_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress ENTER to continue"
+    puts "================================\n\n#{@player1_name.capitalize} won #{@player_wins} times\n\n#{@player2_name.capitalize} won #{@player2_wins} times\n\nYou've had #{@draws} draw matches\n\n================================\n\nPress ENTER to continue"
     gets.chomp
     game_menu
   end
