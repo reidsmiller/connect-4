@@ -23,7 +23,7 @@ include Playable
         @game.win?
       else
         puts 'That is not a valid selection, please select a new column'
-        player_turn1
+        player1_turn
       end
   end
 
@@ -34,7 +34,7 @@ include Playable
         @game.win?
       else
         puts 'That is not a valid selection, please select a new column'
-        player_turn2
+        player2_turn
       end
   end
   
@@ -64,19 +64,7 @@ include Playable
       obtain_player_names
       clear_terminal
     end
-    loop do
-      show_last_moves(@player1_name, @player2_name, @player_turns, @player2_turns)
-      render_board_with_lines
-      column_choice(@player1_name)
-      player1_turn
-      break if game_over?
-      clear_terminal
-      render_board_with_lines
-      column_choice(@player2_name)
-      player2_turn
-      break if game_over?
-      clear_terminal
-    end
+    two_player_turns(@player1_name, @player2_name, @player_turns, @player2_turns)
     game_end_two_player
   end
 

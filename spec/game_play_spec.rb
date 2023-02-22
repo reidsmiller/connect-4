@@ -38,4 +38,16 @@ _________                                     __       _____
              \/         \/         \/        \/          \/                 \/         \/ ')
     end
   end
+
+  it 'can print the column choose string' do
+    expect{@game_play.column_choice('Thomas')}.to output("What column do you choose, Thomas?\n").to_stdout
+  end
+
+  it 'can print the board with lines' do
+    expect{@game_play.render_board_with_lines}.to output("\n\n===============\n A B C D E F G\n . . . . . . .\n . . . . . . .\n . . . . . . .\n . . . . . . .\n . . . . . . .\n . . . . . . .\n===============\n\n").to_stdout
+  end
+
+  it 'can print out the last moves made' do
+    expect{@game_play.show_last_moves('Thomas', 'Reid', ['A'], ['B'])}.to output("Thomas chose A and Reid chose B\n").to_stdout
+  end
 end

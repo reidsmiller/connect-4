@@ -75,8 +75,36 @@ _________                                     __       _____
   end
 
   def show_last_moves(p1_name, p2_name, p1_turns, p2_turns)
-    puts puts "#{p1_name.capitalize} chose #{p1_turns.last} and #{p2_name.capitalize} chose #{p2_turns.last}" if p1_turns != []
+    puts "#{p1_name.capitalize} chose #{p1_turns.last} and #{p2_name.capitalize} chose #{p2_turns.last}" if p1_turns != []
   end
 
+  def two_player_turns(p1_name, p2_name, p1_turns, p2_turns)
+    loop do
+      show_last_moves(p1_name, p2_name, p1_turns, p2_turns)
+      render_board_with_lines
+      column_choice(p1_name)
+      player1_turn
+      break if game_over?
+      clear_terminal
+      render_board_with_lines
+      column_choice(p2_name)
+      player2_turn
+      break if game_over?
+      clear_terminal
+    end
+
+    def player_v_comp_turns(p1_name, p2_name, p1_turns, p2_turns)
+      loop do
+        clear_terminal
+        show_last_moves('You', 'computer', p1_turns, p2_turns)
+        render_board_with_lines
+        column_choice("intrepid player")
+        player1_turn
+        break if game_over?
+        computer_turn
+        break if game_over?
+      end
+    end
+  end
 
 end
