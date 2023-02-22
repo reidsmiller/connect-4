@@ -16,7 +16,7 @@ include Playable
     @draws = 0 
   end
 
-  def player_turn1
+  def player1_turn
     column = gets.chomp
       if @game.board.place(column, 'X')
         @player_turns << column
@@ -27,7 +27,7 @@ include Playable
       end
   end
 
-  def player_turn2
+  def player2_turn
     column = gets.chomp
       if @game.board.place(column, 'O')
         @player2_turns << column
@@ -50,94 +50,78 @@ include Playable
   end
 
   def game_menu
-    puts`clear`
+    clear_terminal
     puts logo
     puts
     puts 'Enter p to play the highest stakes game of your life with a computer. Enter 2 to play with two players. Enter q to wimp out and quit.'
     ans = gets.chomp
     if ans == "p"
-      @game.board.reset
-      @game.game_win = nil
-      @game.game_draw = false
-      @player_turns = [] 
-      @comp_turns = [] 
+      reset_turns
       turn_round
     elsif ans == '2'
-      @game.board.reset
-      @game.game_win = nil
-      @game.game_draw = false
-      @player_turns = [] 
-      @player2_turns = []
+      reset_turns
       turn_round_two_players
     elsif ans == "q"
-      puts `clear`
-      puts '
-       ________    _____      _____  ___________ ____________   _________________________ 
-      /  _____/   /  _  \    /     \ \_   _____/ \_____  \   \ /   /\_   _____/\______   \
-     /   \  ___  /  /_\  \  /  \ /  \ |    __)_   /   |   \   Y   /  |    __)_  |       _/
-     \    \_\  \/    |    \/    Y    \|        \ /    |    \     /   |        \ |    |   \
-      \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
-             \/         \/         \/        \/          \/                 \/         \/ '
+      clear_terminal
+      puts game_over_logo
       puts "\n\n"
     else
-      puts `clear`
+      clear_terminal
       puts "#{ans} isn't a valid answer fool!!"
       game_menu
     end
   end
 
   def turn_round_two_players
-    puts `clear`
+    clear_terminal
     if @player1_name == nil
-      puts 'Player 1 enter your name, your token is a X'
-      @player1_name = gets.chomp 
-      puts 'Player 2 enter your name, your token is an O'
-      @player2_name = gets.chomp
-      puts `clear`
+      obtain_player_names
+      clear_terminal
     end
-    until @game.game_win != nil || @game.game_draw == true
-      puts "#{@player1_name} chose #{@player_turns.last} and #{@player2_name} chose #{@player2_turns.last}" if @player_turns != [] && @player2_turns != []
-      puts "\n\n==============="
+    loop do
+      show_last_moves(@player1_name, @player2_name, @player_turns, @player2_turns)
+      line_render
       @game.board.render
-      puts "===============\n\nWhat column do you choose, #{@player1_name}?"
-      player_turn1
-      if @game.game_win == true
-        break
-      end
-      puts `clear`
-      puts "\n\n==============="
+      column_choice(@player1_name)
+      player1_turn
+      break if game_over?
+      clear_terminal
+      line_render
       @game.board.render
-      puts "===============\n\nWhat column do you choose, #{@player2_name}?"
-      player_turn2
-      puts `clear`
+      column_choice(@player2_name)
+      player2_turn
+      break if game_over?
+      clear_terminal
     end
     game_end_two_player
   end
 
   def turn_round
-    until @game.game_win != nil || @game.game_draw == true
-      puts `clear`
-      puts "You chose #{@player_turns.last} and the computer chose #{@comp_turns.last}" if @player_turns != []
-      puts "\n\n==============="
+    loop do
+      clear_terminal
+      show_last_moves('You', 'computer', @player_turns, @comp_turns)
+      line_render
       @game.board.render
-      puts "===============\n\nWhat column do you choose, intrepid player?"
-      player_turn1
+      column_choice("intrepid player")
+      player1_turn
+      break if game_over?
       computer_turn
+      break if game_over?
     end
     game_end
   end
 
   def game_end
     if @game.game_win == true
-      puts `clear`
+      clear_terminal
       @player_wins += 1
       puts 'YOU WON! HOW COOL!'
     elsif @game.game_win == false
-      puts `clear`
+      clear_terminal
       @comp_wins += 1
       puts "YOU LOST! You're not smart enough to beat a computer choosing random columns? Sad day."
     elsif @game.game_draw == true
-      puts `clear`
+      clear_terminal
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
@@ -148,15 +132,15 @@ include Playable
 
   def game_end_two_player
     if @game.game_win == true
-      puts `clear`
+      clear_terminal
       @player_wins += 1
       puts "#{@player1_name.capitalize} WON! HOW COOL!"
     elsif @game.game_win == false
-      puts `clear`
+      clear_terminal
       @player2_wins += 1
       puts "#{@player2_name.capitalize} WON! HOW COOL!"
     elsif @game.game_draw == true
-      puts `clear`
+      clear_terminal
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG."
     end
