@@ -37,6 +37,8 @@ class Game
     @board.board_array.transpose
   end
 
+  # Look into .with_index
+  #possibly making both diagonal up and down one method with arguments
   def diagonal_up_sort
     padding = 5
     padded_matrix = []

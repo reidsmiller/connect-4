@@ -12,7 +12,8 @@ class Board
       puts
     end
   end
-
+  
+# break out into a few different methods
   def place(column, mark)
     column.upcase!
     if ("A".."G").member?(column)
