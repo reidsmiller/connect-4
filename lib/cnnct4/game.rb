@@ -64,7 +64,17 @@ class Game
   end
 
   def comp_block
-    check_for_3_block(vertical_sort)
+    if check_for_3_block(vertical_sort) == true
+      true
+    elsif check_for_3_block(@board.board_array) == true
+      true
+    elsif check_for_3_block(diagonal_up_sort) == true
+      true
+    elsif check_for_3_block(diagonal_down_sort) == true
+      true
+    else
+      false
+    end
   end
 
   def comp_wins
@@ -72,21 +82,23 @@ class Game
   end
 
   def check_for_3_block(method)
-    works = false
     method.each do |row|
-      mark_row = []
-      row.each {|cell| mark_row << cell.mark}
-      mark_row.each_cons(4) do |group|
-        if group == [".", "X", "X", "X"]
-          @board.place(row[0].column_pos, "O")
-          works = true
-        elsif group == ["X", "X", "X", "."]
-          @board.place(row[3].column_pos, "O")
-          works = true
+      row.each_cons(4) do |cell_row|
+        mark_row = []
+        cell_row.each {|cell| mark_row << cell.mark}
+        if mark_row == [".", "X", "X", "X"]
+          dot_pos = 0
+          # select_one_down(group, dot_pos)
+          @board.place(cell_row[dot_pos].column_pos, "O")
+          return true
+        elsif mark_row == ["X", "X", "X", "."]
+          dot_pos = 3
+          @board.place(cell_row[dot_pos].column_pos, "O")
+          return true
         end
       end
     end
-    return works
+    return false
   end
 
   def check_for_3_win(method)
@@ -100,4 +112,10 @@ class Game
       end
     end
   end
+  def select_one_down(row, dot_pos)
+    cell_down = @board.board_array.flatten.select do |cell| 
+      cell.row_pos == row[dot_pos].row_pos + 1 && cell.column_pos == row[dot_pos].column_pos
+    end
+  end
 end
+
