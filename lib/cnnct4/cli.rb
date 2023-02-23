@@ -1,7 +1,7 @@
 require 'thor'
-require 'connect_4'
+require 'cnnct4'
 
-module Connect4
+module Cnnct4
   class CLI < Thor
     desc "Start Game", "Start CLI game in terminal"
     def self.start

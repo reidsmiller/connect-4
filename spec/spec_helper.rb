@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "connect_4"
+require "cnnct4"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

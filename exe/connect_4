@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require_relative '../lib/connect_4/cli'
-Connect4::CLI.start
