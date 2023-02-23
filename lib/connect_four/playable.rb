@@ -21,7 +21,7 @@ _________                                     __       _____
       \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
              \/         \/         \/        \/          \/                 \/         \/ '
   end
-  #don't know how to write a test for this. 
+   
   def reset_turns
     @game.board.reset
     @game.game_win = nil
