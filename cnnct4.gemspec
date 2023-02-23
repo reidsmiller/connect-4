@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "lib/connect_four/version"
+require_relative "lib/cnnct4/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "connect_four"
-  spec.version = ConnectFour::VERSION
+  spec.name = "cnnct4"
+  spec.version = Cnnct4::VERSION
   spec.authors = ["Reid Miller"]
   spec.email = ["reid.s.miller@gmail.com"]
 
-  spec.summary = "Thomas and Reid's Connect-Four game."
-  spec.description = "A CLI connect four game playable by 1 or 2 players"
+  spec.summary = "Thomas and Reid's Connect 4 game."
+  spec.description = "A CLI connect 4 game playable by 1 or 2 players"
   spec.homepage = "https://github.com/reidsmiller/connect-4"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
