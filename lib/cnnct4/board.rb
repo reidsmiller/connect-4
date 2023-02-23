@@ -29,8 +29,8 @@ class Board
       column = column.ord - 65
       row = 5
       while row >= 0
-        if @board_array[row][column] == "."
-          @board_array[row][column] = mark
+        if @board_array[row][column].mark == "."
+          @board_array[row][column].mark = mark
           return true
         else
           row -= 1

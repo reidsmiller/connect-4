@@ -42,9 +42,9 @@ RSpec.describe Board do
       @board.place("D", "X")
       @board.place("B", "X")
       
-      expect(@board.board_array[5][1]).to eq("X")
-      expect(@board.board_array[5][3]).to eq("X")
-      expect(@board.board_array[4][1]).to eq("X")
+      expect(@board.board_array[5][1].mark).to eq("X")
+      expect(@board.board_array[5][3].mark).to eq("X")
+      expect(@board.board_array[4][1].mark).to eq("X")
     end
 
     it 'can take an uppercase or lowercase letter for column' do
@@ -77,13 +77,13 @@ RSpec.describe Board do
       @board.place("B", "X")
       @board.place("B", "X")
 
-      expect(@board.board_array[1][1]).to eq("X")
-      expect(@board.board_array[5][1]).to eq("X")
+      expect(@board.board_array[1][1].mark).to eq("X")
+      expect(@board.board_array[5][1].mark).to eq("X")
 
       @board.reset
 
-      expect(@board.board_array[1][1]).to eq(".")
-      expect(@board.board_array[5][1]).to eq(".")
+      expect(@board.board_array[1][1].mark).to eq(".")
+      expect(@board.board_array[5][1].mark).to eq(".")
     end
   end
 end
