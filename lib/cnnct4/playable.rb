@@ -110,7 +110,4 @@ _________                                     __       _____
       break if game_over?
     end
   end
-
-  def game_end_message()
-
 end
