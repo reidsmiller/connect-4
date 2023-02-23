@@ -169,4 +169,43 @@ RSpec.describe Game do
 
     end
   end
+
+  describe '#Intelligent Computer' do
+    it 'can block vertically' do
+      @game.board.place("B", "X")
+      @game.board.place("B", "X")
+
+      expect(@game.comp_block).to be false
+      expect(@board.board_array[2][1].mark).to eq(".")
+
+      @game.board.place("B", "X")
+    
+      expect(@game.comp_block).to be true
+      expect(@board.board_array[2][1].mark).to eq("O")
+    end
+
+    it 'can block horizontally right' do
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+
+      expect(@game.comp_block).to be false
+      expect(@board.board_array[5][3].mark).to eq(".")
+      @game.board.place("C", "X")
+
+      expect(@game.comp_block).to be true
+      expect(@board.board_array[5][3].mark).to eq("O")
+    end
+
+    it 'can block horizontally left before right'
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
+
+      expect(@game.comp_block).to be false
+      expect(@board.board_array[5][0].mark).to eq(".")
+
+      @game.board.place("D", "X")
+
+      expect(@game.comp_block).to be true
+      expect(@board.board_array[5][0].mark).to eq("O")
+  end
 end
