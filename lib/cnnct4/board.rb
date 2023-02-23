@@ -2,13 +2,22 @@ class Board
   attr_reader :board_array
 
   def initialize
-    @board_array = Array.new(6) { Array.new(7, ".")}
+    @board_array = [
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new]
+    ]
   end
 
   def render
     puts " A B C D E F G"
     @board_array.each do |row|
-      print " #{row.join(" ")}"
+      mark_row = []
+      row.each {|cell| mark_row << cell.mark}
+      print " #{mark_row.join(" ")}"
       puts
     end
   end
@@ -32,6 +41,13 @@ class Board
   end
 
   def reset
-    @board_array = Array.new(6) { Array.new(7, ".")}
+    @board_array = [
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
+      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new]
+    ]
   end
 end
