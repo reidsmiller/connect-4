@@ -80,12 +80,12 @@ RSpec.describe Game do
     end
 
     it 'returns true when 4 player pieces are in a row diagonally up' do
-      @game.board.board_array[5][1] = "O"
-      @game.board.board_array[5][2] = "O"
-      @game.board.board_array[5][3] = "O"
-      @game.board.board_array[4][2] = "O"
-      @game.board.board_array[4][3] = "O"
-      @game.board.board_array[3][3] = "O"
+      @game.board.board_array[5][1].mark = "O"
+      @game.board.board_array[5][2].mark = "O"
+      @game.board.board_array[5][3].mark = "O"
+      @game.board.board_array[4][2].mark = "O"
+      @game.board.board_array[4][3].mark = "O"
+      @game.board.board_array[3][3].mark = "O"
       @game.board.place("A", "X")
       @game.board.place("B", "X")
       @game.board.place("C", "X")
@@ -99,12 +99,12 @@ RSpec.describe Game do
     end
 
     it 'returns true when 4 player pieces are in a row diagonally down' do
-      @game.board.board_array[5][0] = "O"
-      @game.board.board_array[4][0] = "O"
-      @game.board.board_array[3][0] = "O"
-      @game.board.board_array[5][1] = "O"
-      @game.board.board_array[4][1] = "O"
-      @game.board.board_array[5][2] = "O"
+      @game.board.board_array[5][0].mark = "O"
+      @game.board.board_array[4][0].mark = "O"
+      @game.board.board_array[3][0].mark = "O"
+      @game.board.board_array[5][1].mark = "O"
+      @game.board.board_array[4][1].mark = "O"
+      @game.board.board_array[5][2].mark = "O"
       @game.board.place("A", "X")
       @game.board.place("B", "X")
       @game.board.place("C", "X")
@@ -122,41 +122,41 @@ RSpec.describe Game do
       @game.board.place("B", "X")
       @game.board.place("D", "X")
       @game.board.place("G", "X")
-      @game.board.board_array[5][2] = "O"
-      @game.board.board_array[5][4] = "O"
-      @game.board.board_array[5][5] = "O"
-      @game.board.board_array[4][0] = "O"
-      @game.board.board_array[4][1] = "O"
-      @game.board.board_array[4][2] = "O"
-      @game.board.board_array[4][5] = "O"
+      @game.board.board_array[5][2].mark = "O"
+      @game.board.board_array[5][4].mark = "O"
+      @game.board.board_array[5][5].mark = "O"
+      @game.board.board_array[4][0].mark = "O"
+      @game.board.board_array[4][1].mark = "O"
+      @game.board.board_array[4][2].mark = "O"
+      @game.board.board_array[4][5].mark = "O"
       @game.board.place("D", "X")
       @game.board.place("E", "X")
       @game.board.place("G", "X")
       @game.board.place("B", "X")
       @game.board.place("D", "X")
       @game.board.place("E", "X")
-      @game.board.board_array[3][0] = "O"
-      @game.board.board_array[3][2] = "O"
-      @game.board.board_array[3][5] = "O"
-      @game.board.board_array[3][6] = "O"
+      @game.board.board_array[3][0].mark = "O"
+      @game.board.board_array[3][2].mark = "O"
+      @game.board.board_array[3][5].mark = "O"
+      @game.board.board_array[3][6].mark = "O"
       @game.board.place("A", "X")
       @game.board.place("B", "X")
       @game.board.place("C", "X")
       @game.board.place("F", "X")
       @game.board.place("G", "X")
-      @game.board.board_array[2][3] = "O"
-      @game.board.board_array[2][4] = "O"
+      @game.board.board_array[2][3].mark = "O"
+      @game.board.board_array[2][4].mark = "O"
       @game.board.place("A", "X")
       @game.board.place("D", "X")
       @game.board.place("E", "X")
-      @game.board.board_array[1][1] = "O"
-      @game.board.board_array[1][2] = "O"
-      @game.board.board_array[1][5] = "O"
-      @game.board.board_array[1][6] = "O"
-      @game.board.board_array[0][0] = "O"
-      @game.board.board_array[0][2] = "O"
-      @game.board.board_array[0][4] = "O"
-      @game.board.board_array[0][5] = "O"
+      @game.board.board_array[1][1].mark = "O"
+      @game.board.board_array[1][2].mark = "O"
+      @game.board.board_array[1][5].mark = "O"
+      @game.board.board_array[1][6].mark = "O"
+      @game.board.board_array[0][0].mark = "O"
+      @game.board.board_array[0][2].mark = "O"
+      @game.board.board_array[0][4].mark = "O"
+      @game.board.board_array[0][5].mark = "O"
       @game.board.place("B", "X")
       @game.board.place("D", "X")
 
