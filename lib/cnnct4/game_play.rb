@@ -7,7 +7,7 @@ include Playable
     @player1_name = nil
     @player2_name = nil
     @game = Game.new
-    @player_turns = [] 
+    @player1_turns = [] 
     @player2_turns = []
     @comp_turns = [] 
     @player_wins = 0 
@@ -19,10 +19,10 @@ include Playable
   def player1_turn
     column = gets.chomp
       if @game.board.place(column, 'X')
-        @player_turns << column
+        @player1_turns << column
         @game.win?
       else
-        puts 'That is not a valid selection, please select a new column'
+        invalid_selection_message
         player1_turn
       end
   end
@@ -33,7 +33,7 @@ include Playable
         @player2_turns << column
         @game.win?
       else
-        puts 'That is not a valid selection, please select a new column'
+        invalid_selection_message
         player2_turn
       end
   end
@@ -64,21 +64,12 @@ include Playable
       obtain_player_names
       clear_terminal
     end
-    two_player_turns(@player1_name, @player2_name, @player_turns, @player2_turns)
+    two_player_turns(@player1_name, @player2_name, @player1_turns, @player2_turns)
     game_end_two_player
   end
 
   def turn_round
-    loop do
-      clear_terminal
-      show_last_moves('You', 'computer', @player_turns, @comp_turns)
-      render_board_with_lines
-      column_choice("intrepid player")
-      player1_turn
-      break if game_over?
-      computer_turn
-      break if game_over?
-    end
+    player_v_comp_turns('You', 'the computer', @player1_turns, @comp_turns)
     game_end
   end
 

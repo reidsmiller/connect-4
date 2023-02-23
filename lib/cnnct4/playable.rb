@@ -21,7 +21,7 @@ _________                                     __       _____
       \______  /\____|__  /\____|__  /_______  / \_______  /\___/   /_______  / |____|_  /
              \/         \/         \/        \/          \/                 \/         \/ '
   end
-  #don't know how to write a test for this. 
+   
   def reset_turns
     @game.board.reset
     @game.game_win = nil
@@ -29,6 +29,10 @@ _________                                     __       _____
     @player_turns = [] 
     @player2_turns = []
     @comp_turns = []
+  end
+
+  def invalid_selection_message
+    puts 'That is not a valid selection, please select a new column'
   end
 
   def clear_terminal
@@ -92,19 +96,18 @@ _________                                     __       _____
       break if game_over?
       clear_terminal
     end
-
-    def player_v_comp_turns(p1_name, p2_name, p1_turns, p2_turns)
-      loop do
-        clear_terminal
-        show_last_moves('You', 'computer', p1_turns, p2_turns)
-        render_board_with_lines
-        column_choice("intrepid player")
-        player1_turn
-        break if game_over?
-        computer_turn
-        break if game_over?
-      end
-    end
   end
 
+  def player_v_comp_turns(p1_name, p2_name, p1_turns, p2_turns)
+    loop do
+      clear_terminal
+      show_last_moves(p1_name, p2_name, p1_turns, p2_turns)
+      render_board_with_lines
+      column_choice("intrepid player")
+      player1_turn
+      break if game_over?
+      computer_turn
+      break if game_over?
+    end
+  end
 end
