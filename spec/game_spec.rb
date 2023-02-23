@@ -93,7 +93,6 @@ RSpec.describe Game do
       expect(@game.game_win).to be nil
 
       @game.board.place("D", "X")
-      @game.board.render
       @game.win?
       expect(@game.game_win).to be true
     end
@@ -112,7 +111,6 @@ RSpec.describe Game do
       expect(@game.game_win).to be nil
 
       @game.board.place("D", "X")
-      @game.board.render
       @game.win?
       expect(@game.game_win).to be true
     end
@@ -160,6 +158,7 @@ RSpec.describe Game do
       @game.board.place("B", "X")
       @game.board.place("D", "X")
 
+      @game.win?
       expect(@game.game_win).to be nil
       expect(@game.game_draw).to be false
 

@@ -32,7 +32,7 @@ class Game
   end
 
   def check_for_draw
-    @game_draw = true if !@board.board_array.flatten.any?(/[.]/)
+    @game_draw = true if @board.board_array.flatten.none? {|cell| cell.mark == "."}
   end
   
   def vertical_sort
