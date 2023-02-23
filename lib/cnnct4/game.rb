@@ -62,4 +62,42 @@ class Game
     end
     padded_matrix.transpose.map {|array| array.compact}
   end
+
+  def comp_block
+    check_for_3_block(vertical_sort)
+  end
+
+  def comp_wins
+    check_for_3_win(vertical_sort)
+  end
+
+  def check_for_3_block(method)
+    works = false
+    method.each do |row|
+      mark_row = []
+      row.each {|cell| mark_row << cell.mark}
+      mark_row.each_cons(4) do |group|
+        if group == [".", "X", "X", "X"]
+          @board.place(row[0].column_pos, "O")
+          works = true
+        elsif group == ["X", "X", "X", "."]
+          @board.place(row[3].column_pos, "O")
+          works = true
+        end
+      end
+    end
+    return works
+  end
+
+  def check_for_3_win(method)
+    @board.board_array.each do |row|
+      mark_row = []
+      row.each {|cell| mark_row << cell.mark}
+      mark_row.each_cons(4) do |group|
+        if group == [".", "O", "O", "O"]
+          @board.place(row[0].column_pos, "O")
+        end
+      end
+    end
+  end
 end
