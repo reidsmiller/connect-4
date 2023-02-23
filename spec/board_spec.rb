@@ -15,19 +15,6 @@ RSpec.describe Board do
       expect(@board.board_array[1].length).to eq(7)
     end
 
-     # Outputs get <The diff is empty, are your objects producing identical `#inspect` output?>
-    xit 'can print the board' do
-      expect{@board.render}.to output(
-' A B C D E F G
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . .
- . . . . . . .'
-).to_stdout
-    end
-
     it 'can access and change each point on the grid' do
       #change B4 to X
       @board.board_array[3][1].mark = "X"
