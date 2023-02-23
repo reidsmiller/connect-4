@@ -22,7 +22,7 @@ include Playable
         @player_turns << column
         @game.win?
       else
-        puts 'That is not a valid selection, please select a new column'
+        invalid_selection_message
         player1_turn
       end
   end
@@ -33,7 +33,7 @@ include Playable
         @player2_turns << column
         @game.win?
       else
-        puts 'That is not a valid selection, please select a new column'
+        invalid_selection_message
         player2_turn
       end
   end
@@ -69,16 +69,7 @@ include Playable
   end
 
   def turn_round
-    loop do
-      clear_terminal
-      show_last_moves('You', 'computer', @player_turns, @comp_turns)
-      render_board_with_lines
-      column_choice("intrepid player")
-      player1_turn
-      break if game_over?
-      computer_turn
-      break if game_over?
-    end
+    player_v_comp_turns('You', 'the computer', @player_turns, @comp_turns)
     game_end
   end
 
