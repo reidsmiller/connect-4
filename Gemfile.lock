@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    connect_four (0.0.0)
+    cnnct4 (0.0.0)
       thor
 
 GEM
@@ -26,9 +26,10 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
-  connect_four!
+  cnnct4!
   rake (~> 13.0)
   rspec (~> 3.0)
 
