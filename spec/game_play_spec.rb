@@ -38,6 +38,10 @@ _________                                     __       _____
              \/         \/         \/        \/          \/                 \/         \/ ')
     end
     
+    it 'can print an invalid selection message' do
+      expect{@game_play.invalid_selection_message}.to output("That is not a valid selection, please select a new column\n").to_stdout
+    end
+
     it 'can print the column choose string' do
       expect{@game_play.column_choice('Thomas')}.to output("What column do you choose, Thomas?\n").to_stdout
     end
