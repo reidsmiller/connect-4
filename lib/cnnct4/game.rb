@@ -19,7 +19,9 @@ class Game
 
   def check_for_win(array)
     array.each do |row|
-      row.each_cons(4) do |group|
+      mark_row = []
+      row.each {|cell| mark_row << cell.mark}
+      mark_row.each_cons(4) do |group|
         if group == ["X", "X", "X", "X"]
           @game_win = true
         elsif group == ["O", "O", "O", "O"] 
@@ -30,7 +32,7 @@ class Game
   end
 
   def check_for_draw
-    @game_draw = true if !@board.board_array.flatten.any?(/[.]/)
+    @game_draw = true if @board.board_array.flatten.none? {|cell| cell.mark == "."}
   end
   
   def vertical_sort
