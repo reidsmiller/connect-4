@@ -243,7 +243,7 @@ RSpec.describe Game do
   
       expect(@game.comp_check).to be false
       expect(@game.board.board_array[4][1].mark).to eq(".")
-  
+      
       @game.board.place("D", "X")
       expect(@game.comp_check).to be true
       expect(@game.board.board_array[4][1].mark).to eq("O")
@@ -260,6 +260,27 @@ RSpec.describe Game do
 
       expect(@game.comp_check).to be true
       expect(@game.board.board_array[5][2].mark).to eq("O")
+    end
+
+    it 'chooses to win over block' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "O")
+      @game.board.place("D", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "O")
+      @game.board.place("D", "X")
+      @game.board.place("A", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "X")
+      @game.board.place("E", "X")
+      @game.board.place("F", "O")
+      @game.board.place("G", "X")
+      @game.board.place("E", "O")
+      @game.board.place("G", "O")
+
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[4][1].mark).to eq(".")
+      expect(@game.board.board_array[4][5].mark).to eq("O")
     end
   end
 end
