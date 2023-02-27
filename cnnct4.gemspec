@@ -5,8 +5,8 @@ require_relative "lib/cnnct4/version"
 Gem::Specification.new do |spec|
   spec.name = "cnnct4"
   spec.version = Cnnct4::VERSION
-  spec.authors = ["Reid Miller"]
-  spec.email = ["reid.s.miller@gmail.com"]
+  spec.authors = ["Reid Miller", "Thomas Hawley"]
+  spec.email = ["reid.s.miller@gmail.com", "tchawley2@gmail.com"]
 
   spec.summary = "Thomas and Reid's Connect 4 game."
   spec.description = "A CLI connect 4 game playable by 1 or 2 players"
