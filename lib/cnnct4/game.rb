@@ -64,13 +64,13 @@ class Game
   end
 
   def comp_block
-    if check_for_3_block(vertical_sort) == true
+    if check_for_3(vertical_sort) == true
       true
-    elsif check_for_3_block(@board.board_array) == true
+    elsif check_for_3(@board.board_array) == true
       true
-    elsif check_for_3_block(diagonal_up_sort) == true
+    elsif check_for_3(diagonal_up_sort) == true
       true
-    elsif check_for_3_block(diagonal_down_sort) == true
+    elsif check_for_3(diagonal_down_sort) == true
       true
     else
       false
@@ -81,24 +81,29 @@ class Game
     check_for_3_win(vertical_sort)
   end
 
-  def check_for_3_block(method)
-    method.each do |row|
-      row.each_cons(4) do |cell_row|
-        mark_row = []
-        cell_row.each {|cell| mark_row << cell.mark}
-        if mark_row == [".", "X", "X", "X"]
-          dot_pos = 0
-          # select_one_down(group, dot_pos)
-          @board.place(cell_row[dot_pos].column_pos, "O")
-          return true
-        elsif mark_row == ["X", "X", "X", "."]
-          dot_pos = 3
-          @board.place(cell_row[dot_pos].column_pos, "O")
-          return true
+  def check_for_3(method)
+    catch(:done) do
+      method.each do |row|
+        row.each_cons(4) do |cell_row|
+          mark_row = []
+          cell_row.each {|cell| mark_row << cell.mark}
+          if mark_row == [".", "X", "X", "X"]
+            dot_pos = 0
+            check_one_mark_down_and_place(cell_row, dot_pos)
+          elsif mark_row == ["X", ".", "X", "X"]
+            dot_pos = 1
+            check_one_mark_down_and_place(cell_row, dot_pos)
+          elsif mark_row == ["X", "X", ".", "X"]
+            dot_pos = 2
+            check_one_mark_down_and_place(cell_row, dot_pos)
+          elsif mark_row == ["X", "X", "X", "."]
+            dot_pos = 3
+            check_one_mark_down_and_place(cell_row, dot_pos)
+          end
         end
       end
+      false
     end
-    return false
   end
 
   def check_for_3_win(method)
@@ -112,9 +117,14 @@ class Game
       end
     end
   end
-  def select_one_down(row, dot_pos)
+
+  def check_one_mark_down_and_place(cell_row, dot_pos)
     cell_down = @board.board_array.flatten.select do |cell| 
-      cell.row_pos == row[dot_pos].row_pos + 1 && cell.column_pos == row[dot_pos].column_pos
+      cell.row_pos == cell_row[dot_pos].row_pos + 1 && cell.column_pos == cell_row[dot_pos].column_pos
+    end
+    if cell_down[0]&.mark != "."
+      @board.place(cell_row[dot_pos].column_pos, "O") 
+      throw(:done, true)
     end
   end
 end
