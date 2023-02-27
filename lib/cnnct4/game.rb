@@ -39,8 +39,6 @@ class Game
     @board.board_array.transpose
   end
 
-  # Look into .with_index
-  #possibly making both diagonal up and down one method with arguments
   def diagonal_up_sort
     padding = 5
     padded_matrix = []
@@ -62,4 +60,77 @@ class Game
     end
     padded_matrix.transpose.map {|array| array.compact}
   end
+
+  def comp_check
+    if check_for_3(vertical_sort)
+      true
+    elsif check_for_3(@board.board_array)
+      true
+    elsif check_for_3(diagonal_up_sort)
+      true
+    elsif check_for_3(diagonal_down_sort)
+      true
+    else
+      false
+    end
+  end
+
+  def check_for_3(method)
+    catch(:done) do
+      method.each do |row|
+        row.each_cons(4) do |cell_row|
+          mark_row = []
+          cell_row.each {|cell| mark_row << cell.mark}
+          check_win(cell_row, mark_row)
+          check_block(cell_row, mark_row)
+        end
+      end
+      false
+    end
+  end
+  
+  def check_one_mark_down_and_place(cell_row, dot_pos)
+    cell_down = @board.board_array.flatten.select do |cell| 
+      cell.row_pos == cell_row[dot_pos].row_pos + 1 && cell.column_pos == cell_row[dot_pos].column_pos
+    end
+    if cell_down[0]&.mark != "."
+      @board.place(cell_row[dot_pos].column_pos, "O")
+      
+      throw(:done, true)
+    end
+  end
+  
+  def check_win(cell_row, mark_row)
+    if mark_row == [".", "O", "O", "O"]
+      dot_pos = 0
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", ".", "O", "O"]
+      dot_pos = 1
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", "O", ".", "O"]
+      dot_pos = 2
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", "O", "O", "."]
+      dot_pos = 3
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    end
+  end
+  
+  def check_block(cell_row, mark_row)
+    if mark_row == [".", "X", "X", "X"]
+      dot_pos = 0
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", ".", "X", "X"]
+      dot_pos = 1
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", "X", ".", "X"]
+      dot_pos = 2
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", "X", "X", "."]
+      dot_pos = 3
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    end
+  end
 end
+
+

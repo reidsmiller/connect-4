@@ -9,7 +9,7 @@ include Playable
     @game = Game.new
     @player1_turns = [] 
     @player2_turns = []
-    @comp_turns = [] 
+    @comp_turns = [] #Need functionality for comp_check turns to be shoveled here
     @player_wins = 0 
     @player2_wins = 0
     @comp_wins = 0 
@@ -39,13 +39,17 @@ include Playable
   end
   
   def computer_turn
-    comp_column = (65 + rand(7)).chr
-    if @game.board.place(comp_column, 'O')
-    @comp_turns << comp_column
-    @game.win?
-    comp_column
-    else 
-      computer_turn
+    if @game.comp_check
+      @game.win?
+    else
+      comp_column = (65 + rand(7)).chr
+      if @game.board.place(comp_column, 'O')
+        @comp_turns << comp_column
+        @game.win?
+        comp_column
+      else 
+        computer_turn
+      end
     end
   end
 
@@ -76,14 +80,17 @@ include Playable
   def game_end
     if @game.game_win == true
       clear_terminal
+      @game.board.render
       @player_wins += 1
       puts 'YOU WON! HOW COOL!'
     elsif @game.game_win == false
       clear_terminal
+      @game.board.render
       @comp_wins += 1
       puts "YOU LOST! You're not smart enough to beat a computer choosing random columns? Sad day."
     elsif @game.game_draw == true
       clear_terminal
+      @game.board.render
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG. You're literally not smart enough to beat a computer choosing random columns."
     end
@@ -95,14 +102,17 @@ include Playable
   def game_end_two_player
     if @game.game_win == true
       clear_terminal
+      @game.board.render
       @player_wins += 1
       puts "#{@player1_name.capitalize} WON! HOW COOL!"
     elsif @game.game_win == false
       clear_terminal
+      @game.board.render
       @player2_wins += 1
       puts "#{@player2_name.capitalize} WON! HOW COOL!"
     elsif @game.game_draw == true
       clear_terminal
+      @game.board.render
       @draws += 1
       puts "That was a draw. BOOOOOOOORRRRRRIIIIIINGGGGGGGG."
     end

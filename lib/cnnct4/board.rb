@@ -3,12 +3,12 @@ class Board
 
   def initialize
     @board_array = [
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new]
+      [Cell.new(0, 'A'), Cell.new(0, 'B'), Cell.new(0, 'C'), Cell.new(0, 'D'), Cell.new(0, 'E'), Cell.new(0, 'F'), Cell.new(0, 'G')],
+      [Cell.new(1, 'A'), Cell.new(1, 'B'), Cell.new(1, 'C'), Cell.new(1, 'D'), Cell.new(1, 'E'), Cell.new(1, 'F'), Cell.new(1, 'G')],
+      [Cell.new(2, 'A'), Cell.new(2, 'B'), Cell.new(2, 'C'), Cell.new(2, 'D'), Cell.new(2, 'E'), Cell.new(2, 'F'), Cell.new(2, 'G')],
+      [Cell.new(3, 'A'), Cell.new(3, 'B'), Cell.new(3, 'C'), Cell.new(3, 'D'), Cell.new(3, 'E'), Cell.new(3, 'F'), Cell.new(3, 'G')],
+      [Cell.new(4, 'A'), Cell.new(4, 'B'), Cell.new(4, 'C'), Cell.new(4, 'D'), Cell.new(4, 'E'), Cell.new(4, 'F'), Cell.new(4, 'G')],
+      [Cell.new(5, 'A'), Cell.new(5, 'B'), Cell.new(5, 'C'), Cell.new(5, 'D'), Cell.new(5, 'E'), Cell.new(5, 'F'), Cell.new(5, 'G')]
     ]
   end
 
@@ -42,12 +42,12 @@ class Board
 
   def reset
     @board_array = [
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new],
-      [Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new, Cell.new]
+      [Cell.new(0, 'A'), Cell.new(0, 'B'), Cell.new(0, 'C'), Cell.new(0, 'D'), Cell.new(0, 'E'), Cell.new(0, 'F'), Cell.new(0, 'G')],
+      [Cell.new(1, 'A'), Cell.new(1, 'B'), Cell.new(1, 'C'), Cell.new(1, 'D'), Cell.new(1, 'E'), Cell.new(1, 'F'), Cell.new(1, 'G')],
+      [Cell.new(2, 'A'), Cell.new(2, 'B'), Cell.new(2, 'C'), Cell.new(2, 'D'), Cell.new(2, 'E'), Cell.new(2, 'F'), Cell.new(2, 'G')],
+      [Cell.new(3, 'A'), Cell.new(3, 'B'), Cell.new(3, 'C'), Cell.new(3, 'D'), Cell.new(3, 'E'), Cell.new(3, 'F'), Cell.new(3, 'G')],
+      [Cell.new(4, 'A'), Cell.new(4, 'B'), Cell.new(4, 'C'), Cell.new(4, 'D'), Cell.new(4, 'E'), Cell.new(4, 'F'), Cell.new(4, 'G')],
+      [Cell.new(5, 'A'), Cell.new(5, 'B'), Cell.new(5, 'C'), Cell.new(5, 'D'), Cell.new(5, 'E'), Cell.new(5, 'F'), Cell.new(5, 'G')]
     ]
   end
 end

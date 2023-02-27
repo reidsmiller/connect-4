@@ -169,4 +169,118 @@ RSpec.describe Game do
 
     end
   end
+
+  describe '#Intelligent Computer' do
+    it 'can block vertically' do
+      @game.board.place("B", "X")
+      @game.board.place("B", "X")
+
+      expect(@game.check_for_3(@game.vertical_sort)).to eq(false)
+      expect(@game.board.board_array[2][1].mark).to eq(".")
+      expect(@game.comp_check).to be false
+
+      @game.board.place("B", "X")
+
+      expect(@game.check_for_3(@game.vertical_sort)).to eq(true)
+      expect(@game.board.board_array[2][1].mark).to eq("O")
+    end
+
+    it 'can block horizontally right' do
+      @game.board.place("A", "X")
+      @game.board.place("B", "X")
+
+      expect(@game.check_for_3(@game.board.board_array)).to be false
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[5][3].mark).to eq(".")
+      @game.board.place("C", "X")
+
+      expect(@game.check_for_3(@game.board.board_array)).to be true
+      expect(@game.board.board_array[5][3].mark).to eq("O")
+    end
+
+    it 'can block horizontally left before right' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
+
+      expect(@game.check_for_3(@game.board.board_array)).to be false
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[5][0].mark).to eq(".")
+
+      @game.board.place("D", "X")
+
+      expect(@game.check_for_3(@game.board.board_array)).to be true
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[5][0].mark).to eq("O")
+    end
+
+    it 'only blocks when it can place at correct position' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "O")
+      @game.board.place("D", "O")
+      @game.board.place("B", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "X")
+      
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[5][0].mark).to eq(".")
+
+      @game.board.place("A", "X")
+
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[4][0].mark).to eq("O")
+    end
+
+    it 'blocks diagonally at position[1]' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "O")
+      @game.board.place("D", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "O")
+      @game.board.place("D", "X")
+  
+      @game.board.place("A", "X")
+      @game.board.place("C", "X")
+  
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[4][1].mark).to eq(".")
+      
+      @game.board.place("D", "X")
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[4][1].mark).to eq("O")
+    end
+
+    it 'can win at position[2]' do
+      @game.board.place("A", "O")
+      @game.board.place("B", "O")
+
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[5][2].mark).to eq(".")
+
+      @game.board.place("D", "O")
+
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[5][2].mark).to eq("O")
+    end
+
+    it 'chooses to win over block' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "O")
+      @game.board.place("D", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "O")
+      @game.board.place("D", "X")
+      @game.board.place("A", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "X")
+      @game.board.place("E", "X")
+      @game.board.place("F", "O")
+      @game.board.place("G", "X")
+      @game.board.place("E", "O")
+      @game.board.place("G", "O")
+
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[4][1].mark).to eq(".")
+      expect(@game.board.board_array[4][5].mark).to eq("O")
+    end
+  end
 end
