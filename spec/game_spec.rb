@@ -177,7 +177,7 @@ RSpec.describe Game do
 
       expect(@game.check_for_3(@game.vertical_sort)).to eq(false)
       expect(@game.board.board_array[2][1].mark).to eq(".")
-      expect(@game.comp_block).to be false
+      expect(@game.comp_check).to be false
 
       @game.board.place("B", "X")
 
@@ -190,7 +190,7 @@ RSpec.describe Game do
       @game.board.place("B", "X")
 
       expect(@game.check_for_3(@game.board.board_array)).to be false
-      expect(@game.comp_block).to be false
+      expect(@game.comp_check).to be false
       expect(@game.board.board_array[5][3].mark).to eq(".")
       @game.board.place("C", "X")
 
@@ -203,13 +203,13 @@ RSpec.describe Game do
       @game.board.place("C", "X")
 
       expect(@game.check_for_3(@game.board.board_array)).to be false
-      expect(@game.comp_block).to be false
+      expect(@game.comp_check).to be false
       expect(@game.board.board_array[5][0].mark).to eq(".")
 
       @game.board.place("D", "X")
 
       expect(@game.check_for_3(@game.board.board_array)).to be true
-      expect(@game.comp_block).to be true
+      expect(@game.comp_check).to be true
       expect(@game.board.board_array[5][0].mark).to eq("O")
     end
 
@@ -221,17 +221,45 @@ RSpec.describe Game do
       @game.board.place("C", "X")
       @game.board.place("D", "X")
       
-      expect(@game.comp_block).to be false
+      expect(@game.comp_check).to be false
       expect(@game.board.board_array[5][0].mark).to eq(".")
 
       @game.board.place("A", "X")
 
-      expect(@game.comp_block).to be true
+      expect(@game.comp_check).to be true
       expect(@game.board.board_array[4][0].mark).to eq("O")
     end
-  end
 
-  it 'blocks diagonally' do
-    @game.board.place("B", "X")
+    it 'blocks diagonally at position[1]' do
+      @game.board.place("B", "X")
+      @game.board.place("C", "O")
+      @game.board.place("D", "X")
+      @game.board.place("C", "X")
+      @game.board.place("D", "O")
+      @game.board.place("D", "X")
+  
+      @game.board.place("A", "X")
+      @game.board.place("C", "X")
+  
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[4][1].mark).to eq(".")
+  
+      @game.board.place("D", "X")
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[4][1].mark).to eq("O")
+    end
+
+    it 'can win at position[2]' do
+      @game.board.place("A", "O")
+      @game.board.place("B", "O")
+
+      expect(@game.comp_check).to be false
+      expect(@game.board.board_array[5][2].mark).to eq(".")
+
+      @game.board.place("D", "O")
+
+      expect(@game.comp_check).to be true
+      expect(@game.board.board_array[5][2].mark).to eq("O")
+    end
   end
 end

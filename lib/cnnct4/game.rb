@@ -63,22 +63,18 @@ class Game
     padded_matrix.transpose.map {|array| array.compact}
   end
 
-  def comp_block
-    if check_for_3(vertical_sort) == true
+  def comp_check
+    if check_for_3(vertical_sort)
       true
-    elsif check_for_3(@board.board_array) == true
+    elsif check_for_3(@board.board_array)
       true
-    elsif check_for_3(diagonal_up_sort) == true
+    elsif check_for_3(diagonal_up_sort)
       true
-    elsif check_for_3(diagonal_down_sort) == true
+    elsif check_for_3(diagonal_down_sort)
       true
     else
       false
     end
-  end
-
-  def comp_wins
-    check_for_3_win(vertical_sort)
   end
 
   def check_for_3(method)
@@ -87,37 +83,14 @@ class Game
         row.each_cons(4) do |cell_row|
           mark_row = []
           cell_row.each {|cell| mark_row << cell.mark}
-          if mark_row == [".", "X", "X", "X"]
-            dot_pos = 0
-            check_one_mark_down_and_place(cell_row, dot_pos)
-          elsif mark_row == ["X", ".", "X", "X"]
-            dot_pos = 1
-            check_one_mark_down_and_place(cell_row, dot_pos)
-          elsif mark_row == ["X", "X", ".", "X"]
-            dot_pos = 2
-            check_one_mark_down_and_place(cell_row, dot_pos)
-          elsif mark_row == ["X", "X", "X", "."]
-            dot_pos = 3
-            check_one_mark_down_and_place(cell_row, dot_pos)
-          end
+          check_win(cell_row, mark_row)
+          check_block(cell_row, mark_row)
         end
       end
       false
     end
   end
-
-  def check_for_3_win(method)
-    @board.board_array.each do |row|
-      mark_row = []
-      row.each {|cell| mark_row << cell.mark}
-      mark_row.each_cons(4) do |group|
-        if group == [".", "O", "O", "O"]
-          @board.place(row[0].column_pos, "O")
-        end
-      end
-    end
-  end
-
+  
   def check_one_mark_down_and_place(cell_row, dot_pos)
     cell_down = @board.board_array.flatten.select do |cell| 
       cell.row_pos == cell_row[dot_pos].row_pos + 1 && cell.column_pos == cell_row[dot_pos].column_pos
@@ -127,5 +100,38 @@ class Game
       throw(:done, true)
     end
   end
+  
+  def check_win(cell_row, mark_row)
+    if mark_row == [".", "O", "O", "O"]
+      dot_pos = 0
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", ".", "O", "O"]
+      dot_pos = 1
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", "O", ".", "O"]
+      dot_pos = 2
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["O", "O", "O", "."]
+      dot_pos = 3
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    end
+  end
+  
+  def check_block(cell_row, mark_row)
+    if mark_row == [".", "X", "X", "X"]
+      dot_pos = 0
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", ".", "X", "X"]
+      dot_pos = 1
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", "X", ".", "X"]
+      dot_pos = 2
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    elsif mark_row == ["X", "X", "X", "."]
+      dot_pos = 3
+      check_one_mark_down_and_place(cell_row, dot_pos)
+    end
+  end
 end
+
 
