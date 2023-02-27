@@ -95,7 +95,6 @@ class Game
     end
     if cell_down[0]&.mark != "."
       @board.place(cell_row[dot_pos].column_pos, "O")
-      
       throw(:done, true)
     end
   end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cnnct4 (0.1.0)
+    cnnct4 (0.1.1)
       thor
 
 GEM
